@@ -5,18 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tajiri 3 Inc. | Business & Financial Consulting</title>
     <style>
-        /* Global Styles */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        /* Global & Corporate Layout Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; scroll-behavior: smooth; }
         body { background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
-       
-        /* Utility Components */
+        
+        /* Navigation & Structural Elements */
         .container { width: 85%; max-width: 1200px; margin: 0 auto; }
-        .btn { display: inline-block; padding: 12px 30px; background-color: #d4af37; color: #0f172a; text-decoration: none; font-weight: bold; border-radius: 5px; transition: 0.3s ease; text-transform: uppercase; font-size: 0.9rem; }
-        .btn:hover { background-color: #f39c12; transform: translateY(-2px); }
-        .section-title { text-align: center; font-size: 2.3rem; color: #0f172a; margin-bottom: 40px; position: relative; text-transform: uppercase; letter-spacing: 1px; }
-        .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: #d4af37; margin: 15px auto 0; }
-
-        /* Navigation Bar */
         header { background-color: #0f172a; border-bottom: 3px solid #d4af37; padding: 20px 0; position: sticky; top: 0; z-index: 1000; }
         .nav-container { display: flex; justify-content: space-between; align-items: center; }
         .logo { color: #ffffff; font-size: 1.8rem; font-weight: bold; letter-spacing: 1px; }
@@ -26,35 +20,71 @@
         nav ul li a { color: #cbd5e1; text-decoration: none; font-size: 1rem; transition: 0.3s; font-weight: 500; }
         nav ul li a:hover { color: #d4af37; }
 
+        /* Buttons & Accent Visual Anchors */
+        .btn { display: inline-block; padding: 12px 30px; background-color: #d4af37; color: #0f172a; text-decoration: none; font-weight: bold; border-radius: 5px; transition: 0.3s ease; text-transform: uppercase; font-size: 0.9rem; border: none; cursor: pointer; }
+        .btn:hover { background-color: #f39c12; transform: translateY(-2px); }
+        .section-title { text-align: center; font-size: 2.3rem; color: #0f172a; margin-bottom: 40px; position: relative; text-transform: uppercase; letter-spacing: 1px; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: #d4af37; margin: 15px auto 0; }
+
         /* Hero Showcase Section */
         .hero { background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('https://unsplash.com') no-repeat center center/cover; padding: 140px 0; color: #ffffff; text-align: center; }
         .hero h1 { font-size: 3.5rem; margin-bottom: 20px; letter-spacing: 1px; }
         .hero p { font-size: 1.3rem; max-width: 700px; margin: 0 auto 30px; color: #94a3b8; }
 
-        /* Core Focus / Description Section */
+        /* Brief Corporate Description Section */
         .about-brief { padding: 80px 0; background-color: #ffffff; text-align: center; }
         .about-brief p { max-width: 900px; margin: 0 auto; font-size: 1.2rem; color: #475569; line-height: 1.8; }
 
-        /* Services Grid Sections */
+        /* Service Cards Grids */
         .services-section { padding: 80px 0; background-color: #f1f5f9; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-bottom: 50px; }
         .service-card { background-color: #ffffff; padding: 40px 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #0f172a; transition: 0.3s ease; }
         .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-top-color: #d4af37; }
         .service-card h3 { font-size: 1.4rem; color: #0f172a; margin-bottom: 15px; }
-        .service-card ul { list-style-position: inside; color: #475569; margin-top: 10px; }
-        .service-card ul li { margin-bottom: 8px; }
+        .service-card p { color: #64748b; margin-bottom: 15px; font-size: 0.95rem; }
+        .service-card ul { list-style-position: inside; color: #475569; }
+        .service-card ul li { margin-bottom: 8px; font-size: 0.95rem; }
 
-        /* Bottom Contact / Footer Area */
+        /* Automated Routing Phone Menu Visual Component */
+        .phone-menu-box { background-color: #ffffff; padding: 30px; border-radius: 8px; border-left: 5px solid #d4af37; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 800px; margin: 0 auto; }
+        .phone-menu-box h4 { font-size: 1.2rem; color: #0f172a; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .menu-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; }
+        .menu-item { background: #f8fafc; padding: 12px; border-radius: 5px; font-size: 0.95rem; color: #334155; font-weight: 500; border: 1px solid #e2e8f0; }
+
+        /* Interactive Website Booking Form Section */
+        .booking-section { padding: 80px 0; background-color: #ffffff; }
+        .booking-form { max-width: 650px; margin: 0 auto; background-color: #f8fafc; padding: 40px; border-radius: 10px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; font-size: 0.95rem; color: #334155; font-weight: 600; margin-bottom: 8px; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 5px; font-size: 1rem; color: #0f172a; background-color: #ffffff; transition: 0.3s; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #d4af37; outline: none; box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15); }
+
+        /* Footer & Contact Section */
         .contact-footer { background-color: #0f172a; color: #ffffff; padding: 60px 0 30px; text-align: center; border-top: 5px solid #d4af37; }
         .contact-info { margin-bottom: 40px; }
         .contact-info p { font-size: 1.1rem; color: #94a3b8; margin-bottom: 10px; }
         .contact-info strong { color: #ffffff; }
         .footer-rights { font-size: 0.9rem; color: #64748b; border-top: 1px solid #1e293b; padding-top: 25px; }
+
+        /* Floating Live Website Text Chatbot Interface Widget */
+        .chat-widget { position: fixed; bottom: 25px; right: 25px; z-index: 2000; width: 350px; background: #ffffff; border-radius: 12px; box-shadow: 0 12px 28px rgba(0,0,0,0.15); border: 1px solid #e2e8f0; display: none; flex-direction: column; overflow: hidden; transition: 0.3s ease; }
+        .chat-header { background: #0f172a; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #d4af37; }
+        .chat-close { cursor: pointer; font-size: 1.2rem; color: #94a3b8; }
+        .chat-close:hover { color: #ffffff; }
+        .chat-body { height: 280px; padding: 15px; overflow-y: auto; background: #f8fafc; display: flex; flex-direction: column; gap: 10px; }
+        .chat-bubble { padding: 10px 14px; border-radius: 8px; max-width: 80%; font-size: 0.9rem; line-height: 1.4; }
+        .chat-bubble.bot { background: #e2e8f0; color: #0f172a; align-self: flex-start; border-bottom-left-radius: 2px; }
+        .chat-bubble.user { background: #0f172a; color: white; align-self: flex-end; border-bottom-right-radius: 2px; border: 1px solid #d4af37; }
+        .chat-footer-input { display: flex; padding: 10px; border-top: 1px solid #e2e8f0; background: #ffffff; }
+        .chat-footer-input input { flex: 1; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 4px; outline: none; font-size: 0.9rem; }
+        .chat-footer-input button { background: #d4af37; border: none; padding: 0 15px; margin-left: 8px; border-radius: 4px; color: #0f172a; font-weight: bold; cursor: pointer; }
+        .chat-trigger { position: fixed; bottom: 25px; right: 25px; background: #0f172a; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.6rem; cursor: pointer; box-shadow: 0 8px 24px rgba(0,0,0,0.2); border: 2px solid #d4af37; z-index: 1999; transition: 0.3s; }
+        .chat-trigger:hover { transform: scale(1.05); }
     </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
+    <!-- Header Navigation Section -->
     <header>
         <div class="container nav-container">
             <div class="logo">TAJIRI 3 <span>INC.</span></div>
@@ -62,86 +92,41 @@
                 <ul>
                     <li><a href="#about">Overview</a></li>
                     <li><a href="#services">Our Services</a></li>
+                    <li><a href="#booking">Book Consultation</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Main Hero Banner Section -->
+    <!-- Main Corporate Hero Section -->
     <section class="hero">
         <div class="container">
             <h1>Driving Consumer & Corporate Growth</h1>
-            <p>Strategic financial intelligence, business formation advisory, and structured consulting designed to secure funding and optimize corporate workflows.</p>
-            <a href="#contact" class="btn">Schedule A Consultation</a>
+            <p>Strategic credit consulting, structural business formation, workflow optimization, and funding preparation plans built for small-to-medium enterprise scales.</p>
+            <a href="#booking" class="btn">Schedule A Consultation</a>
         </div>
     </section>
 
-    <!-- Detailed Core Overview -->
+    <!-- Detailed Firm Core Profile Overview -->
     <section id="about" class="about-brief">
         <div class="container">
             <h2 class="section-title">Corporate Advisory & Financial Literacy</h2>
-            <p>Tajiri 3 Inc. operates as an elite business and financial consulting firm dedicated to accelerating long-term consumer and corporate capital value. We empower small-to-medium enterprises and growth-focused individuals by delivering actionable blueprints for capital readiness, operational efficiency, and strict regulatory asset alignment.</p>
+            <p>Tajiri 3 Inc. operates as a business and financial consulting firm dedicated to driving consumer and corporate growth. We help startups secure funding, fix operational workflows, and handle structural compliance management, empowering entities to unlock long-term asset value and establish clear paths to growth.</p>
         </div>
     </section>
 
-    <!-- Structured Service Suite Grid -->
+    <!-- Comprehensive Service Suite Grids -->
     <section id="services" class="services-section">
         <div class="container">
             <h2 class="section-title">Core Service Offerings</h2>
             <div class="services-grid">
-               
-                <!-- Financial Literacy & Credit Box -->
+                
+                <!-- Card 1: Consumer and Business Credit -->
                 <div class="service-card">
                     <h3>Consumer & Business Credit Solutions</h3>
-                    <p>Building strong foundations for individual and commercial purchasing power:</p>
+                    <p>Building foundational purchasing power and file optimization frameworks:</p>
                     <ul>
                         <li>Personal & Corporate Credit Counseling</li>
-                        <li>Comprehensive Financial Literacy Education</li>
-                        <li>Strategic Credit File Repair & Building</li>
-                    </ul>
-                </div>
-
-                <!-- Small and Medium Enterprise Advisory Box -->
-                <div class="service-card">
-                    <h3>Enterprise Management Consulting</h3>
-                    <p>Equipping startups and established businesses with institutional operational infrastructure:</p>
-                    <ul>
-                        <li>Business Formation & Structural Advisory</li>
-                        <li>Operational Workflow Optimization</li>
-                        <li>Capital Sourcing & Real Funding Frameworks</li>
-                    </ul>
-                </div>
-
-                <!-- Professional Corporate Tax Box -->
-                <div class="service-card">
-                    <h3>Corporate Fiscal Strategy</h3>
-                    <p>Navigating strict corporate compliance profiles to maximize entity value retention:</p>
-                    <ul>
-                        <li>Corporate Tax Preparation & Filing</li>
-                        <li>Strategic Asset Allocation Guidance</li>
-                        <li>Retainer & Contract-Based Financial Management</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact & Brand Rights Area -->
-    <footer id="contact" class="contact-footer">
-        <div class="container">
-            <h2 class="section-title" style="color:#ffffff;">Establish Your Consultation</h2>
-            <div class="contact-info">
-                <p>Ready to scale operations or secure capital funding? Partner with our consulting coordinators.</p>
-                <p style="margin-top: 20px;"><strong>Corporate Email:</strong> Support@tajiri3inc.online</p>
-                <p><strong>Inquiries & Scheduling:</strong> Consultations Billable via Contract/Retainer</p>
-            </div>
-            <div class="footer-rights">
-                &copy; 2026 Tajiri 3 Inc. All Corporate Rights Reserved. Managed securely via Cloudflare and GitHub Cloud.
-            </div>
-        </div>
-    </footer>
-
-</body>
-</html> 
+                        <li>Financial Literacy Education Packages</li>
+                        <li>Credit File Repair & Structured Profiles</li>
