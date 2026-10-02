@@ -173,6 +173,39 @@
             font-size: 0.95rem;
         }
 
+        /* Locations Section */
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .location-card {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .location-card h3 {
+            color: #0f172a;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .location-card p a {
+            color: #d4af37;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .location-card p a:hover {
+            text-decoration: underline;
+        }
+
         /* Booking / Contact Form */
         .booking-section {
             padding: 80px 0;
@@ -297,10 +330,24 @@
         </div>
     </section>
 
-    <!-- Contact / Booking Form -->
+    <!-- Contact & Locations Section -->
     <section id="contact" class="booking-section">
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
+            
+            <!-- Locations Cards -->
+            <div class="locations-grid">
+                <div class="location-card">
+                    <h3>New York City</h3>
+                    <p>Phone: <a href="tel:3479569055">(347) 956-9055</a></p>
+                </div>
+                <div class="location-card">
+                    <h3>Houston</h3>
+                    <p>Phone: <a href="tel:8324215566">(832) 421-5566</a></p>
+                </div>
+            </div>
+
+            <!-- Booking Form -->
             <form action="https://formspree.io/f/mjykjkqp" method="POST" class="booking-form">
                 
                 <div class="form-group">
