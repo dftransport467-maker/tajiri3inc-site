@@ -397,9 +397,18 @@
         </div>
     </footer>
 
-    <!-- Botpress Webchat Integration -->
+    <!-- Botpress Webchat Integration & Active Triggers -->
     <script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
-    <script src="https://files.bpcontent.cloud/2026/10/02/18/20261002184708-NHYAO47K.js" defer></script>
+    <script src="https://files.bpcontent.cloud/2026/10/02/18/20261002184708-NHYAO47K.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            if (window.botpress) {
+                window.botpress.on('webchat:ready', () => {
+                    window.botpress.open();
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
