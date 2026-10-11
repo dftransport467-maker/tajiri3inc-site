@@ -82,6 +82,8 @@
             text-decoration: none;
             font-weight: bold;
             transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
         }
         .btn:hover {
             background-color: #c5a028;
@@ -147,6 +149,25 @@
         .service-card-body p {
             color: #64748b;
             font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        .card-btn {
+            display: inline-block;
+            background-color: #0f172a;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+        .card-btn:hover {
+            background-color: #d4af37;
+            color: #0f172a;
         }
         footer {
             background-color: #0f172a;
@@ -178,7 +199,7 @@
     <section class="hero">
         <div class="container">
             <h1>Elevate Your Financial & Business Future</h1>
-            <p>Professional credit solutions, business structuring, tax preparation, and tradeline services designed for maximum growth.</p>
+            <p>Professional tax preparation, credit repair, tradeline sales, business structuring, and project management designed for maximum growth.</p>
             <a href="#" class="btn">Get Started Today</a>
         </div>
     </section>
@@ -189,29 +210,43 @@
             <h2 class="section-title">Our Services</h2>
             <div class="services-grid">
                 
-                <!-- Tradeline Services Card -->
+                <!-- Tax Preparation -->
                 <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=800&q=80" alt="Tradeline Services">
+                    <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=800&q=80" alt="Tax Preparation">
                     <div class="service-card-body">
                         <div>
-                            <h3>Tradeline Services</h3>
+                            <h3>Tax Preparation</h3>
+                            <p>Accurate and strategic tax preparation and filing services tailored for individuals and businesses to maximize returns.</p>
+                        </div>
+                        <button class="card-btn" onclick="openChatWithService('Tax Preparation')">Get Started</button>
+                    </div>
+                </div>
+
+                <!-- Credit Repair -->
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80" alt="Credit Repair">
+                    <div class="service-card-body">
+                        <div>
+                            <h3>Credit Repair</h3>
+                            <p>Comprehensive credit building, optimization, and score restoration strategies tailored to personal and corporate success.</p>
+                        </div>
+                        <button class="card-btn" onclick="openChatWithService('Credit Repair')">Get Started</button>
+                    </div>
+                </div>
+
+                <!-- Tradeline Sales -->
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80" alt="Tradeline Sales">
+                    <div class="service-card-body">
+                        <div>
+                            <h3>Tradeline Sales</h3>
                             <p>Boost your credit profile quickly using seasoned authorized user tradelines to increase credit limits and improve utilization ratios.</p>
                         </div>
+                        <button class="card-btn" onclick="openChatWithTradelineMenu()">View Tradelines</button>
                     </div>
                 </div>
 
-                <!-- Personal & Business Credit Card -->
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80" alt="Credit Solutions">
-                    <div class="service-card-body">
-                        <div>
-                            <h3>Personal & Business Credit</h3>
-                            <p>Comprehensive credit building, optimization, and funding strategies tailored to personal and corporate success.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Business Structuring Card -->
+                <!-- Business Structuring -->
                 <div class="service-card">
                     <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80" alt="Business Structuring">
                     <div class="service-card-body">
@@ -219,6 +254,19 @@
                             <h3>Business Structuring</h3>
                             <p>Establish the right legal and financial foundation with correct entity formation, compliance, and asset protection.</p>
                         </div>
+                        <button class="card-btn" onclick="openChatWithService('Business Structuring')">Get Started</button>
+                    </div>
+                </div>
+
+                <!-- Project Management -->
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80" alt="Project Management">
+                    <div class="service-card-body">
+                        <div>
+                            <h3>Project Management</h3>
+                            <p>Expert coordination, execution, and oversight for your business operations, initiatives, and strategic milestones.</p>
+                        </div>
+                        <button class="card-btn" onclick="openChatWithService('Project Management')">Get Started</button>
                     </div>
                 </div>
 
@@ -244,6 +292,27 @@
                 });
             }
         });
+
+        function openChatWithTradelineMenu() {
+            if (window.botpress) {
+                window.botpress.open();
+                // Sends a message payload to prompt the Botpress bot to trigger the tradeline menu
+                window.botpress.sendPayload({
+                    type: 'text',
+                    text: 'I want to see the tradeline menu and options'
+                });
+            }
+        }
+
+        function openChatWithService(serviceName) {
+            if (window.botpress) {
+                window.botpress.open();
+                window.botpress.sendPayload({
+                    type: 'text',
+                    text: 'I am interested in ' + serviceName
+                });
+            }
+        }
     </script>
 </body>
 </html>
