@@ -1,657 +1,2522 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tajiri3 Inc. | Financial & Business Solutions</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background-color: #f8fafc;
-            color: #334155;
-            line-height: 1.6;
-        }
-        header {
-            background-color: #0f172a;
-            color: #ffffff;
-            padding: 20px 0;
-            border-bottom: 3px solid #d4af37;
-        }
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #ffffff;
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-        .logo span {
-            color: #d4af37;
-        }
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
-        nav ul li a {
-            color: #cbd5e1;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        nav ul li a:hover {
-            color: #d4af37;
-        }
-        .hero {
-            background: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80') center / cover no-repeat;
-            padding: 130px 0;
-            color: #ffffff;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 3.2rem;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 750px;
-            margin: 0 auto 30px;
-            color: #94a3b8;
-        }
-        .btn {
-            display: inline-block;
-            background-color: #d4af37;
-            color: #0f172a;
-            padding: 12px 30px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-            border: none;
-        }
-        .btn:hover {
-            background-color: #c5a028;
-        }
-        .services-section, .tradeline-section {
-            padding: 80px 0;
-        }
-        .services-section {
-            background-color: #f1f5f9;
-        }
-        .tradeline-section {
-            background-color: #ffffff;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 2.3rem;
-            color: #0f172a;
-            margin-bottom: 40px;
-            position: relative;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background-color: #d4af37;
-            margin: 15px auto 0;
-        }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        .service-card {
-            background-color: #ffffff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            border-top: 4px solid #0f172a;
-            transition: 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            border-top-color: #d4af37;
-        }
-        .service-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .service-card-body {
-            padding: 25px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .service-card-body h3 {
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-            color: #0f172a;
-        }
-        .service-card-body p {
-            color: #64748b;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
-        .card-btn {
-            display: inline-block;
-            background-color: #0f172a;
-            color: #ffffff;
-            padding: 10px 20px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            text-align: center;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-            border: none;
-            width: 100%;
-        }
-        .card-btn:hover {
-            background-color: #d4af37;
-            color: #0f172a;
-        }
-        /* Table Styling for Tradeline Menu */
-        .table-responsive {
-            overflow-x: auto;
-            max-height: 600px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #ffffff;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-        }
-        th {
-            background-color: #0f172a;
-            color: #ffffff;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        tr:nth-child(even) {
-            background-color: #f8fafc;
-        }
-        tr:hover {
-            background-color: #f1f5f9;
-        }
-        td {
-            color: #334155;
-            border-bottom: 1px solid #e2e8f0;
-            font-size: 0.9rem;
-        }
-        footer {
-            background-color: #0f172a;
-            color: #94a3b8;
-            text-align: center;
-            padding: 30px 0;
-            font-size: 0.9rem;
-            border-top: 1px solid #1e293b;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Header Section -->
-    <header>
-        <div class="container nav-container">
-            <a href="#" class="logo">TAJIRI3<span>INC</span></a>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#tradelines">Tradelines</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Elevate Your Financial & Business Future</h1>
-            <p>Professional tax preparation, credit repair, tradeline sales, business structuring, and project management designed for maximum growth.</p>
-            <a href="#services" class="btn">Explore Services</a>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services-section" id="services">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <div class="services-grid">
-                
-                <!-- Tax Preparation -->
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=800&q=80" alt="Tax Preparation">
-                    <div class="service-card-body">
-                        <div>
-                            <h3>Tax Preparation</h3>
-                            <p>Accurate and strategic tax preparation and filing services tailored for individuals and businesses to maximize returns.</p>
-                        </div>
-                        <button class="card-btn" onclick="openChatWithService('Tax Preparation')">Get Started</button>
-                    </div>
-                </div>
-
-                <!-- Credit Repair -->
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80" alt="Credit Repair">
-                    <div class="service-card-body">
-                        <div>
-                            <h3>Credit Repair</h3>
-                            <p>Comprehensive credit building, optimization, and score restoration strategies tailored to personal and corporate success.</p>
-                        </div>
-                        <button class="card-btn" onclick="openChatWithService('Credit Repair')">Get Started</button>
-                    </div>
-                </div>
-
-                <!-- Tradeline Sales -->
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80" alt="Tradeline Sales">
-                    <div class="service-card-body">
-                        <div>
-                            <h3>Tradeline Sales</h3>
-                            <p>Boost your credit profile quickly using seasoned authorized user tradelines to increase credit limits and improve utilization ratios.</p>
-                        </div>
-                        <a href="#tradelines" class="card-btn">View Tradeline Menu</a>
-                    </div>
-                </div>
-
-                <!-- Business Structuring -->
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80" alt="Business Structuring">
-                    <div class="service-card-body">
-                        <div>
-                            <h3>Business Structuring</h3>
-                            <p>Establish the right legal and financial foundation with correct entity formation, compliance, and asset protection.</p>
-                        </div>
-                        <button class="card-btn" onclick="openChatWithService('Business Structuring')">Get Started</button>
-                    </div>
-                </div>
-
-                <!-- Project Management -->
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80" alt="Project Management">
-                    <div class="service-card-body">
-                        <div>
-                            <h3>Project Management</h3>
-                            <p>Expert coordination, execution, and oversight for your business operations, initiatives, and strategic milestones.</p>
-                        </div>
-                        <button class="card-btn" onclick="openChatWithService('Project Management')">Get Started</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Tradeline Menu Table Section -->
-    <section class="tradeline-section" id="tradelines">
-        <div class="container">
-            <h2 class="section-title">Tradeline Inventory & Pricing Menu</h2>
-            <p style="text-align: center; color: #64748b; margin-bottom: 30px;">Browse our verified active tradelines, limits, history ages, deadlines, and pricing.</p>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Card ID</th>
-                            <th>Bank</th>
-                            <th>Price</th>
-                            <th>Limit</th>
-                            <th>Age</th>
-                            <th>Purchase Deadline</th>
-                            <th>1st Reporting Period</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>40046</td><td>CP1</td><td>$390.00</td><td>$6,000</td><td>4 yrs 2 mo</td><td>Oct 10th</td><td>Oct 21st - Oct 28th</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40046 (CP1)')">Select</button></td></tr>
-                        <tr><td>25025</td><td>Chase</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 25025 (Chase)')">Select</button></td></tr>
-                        <tr><td>27870</td><td>Barclays</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 27870 (Barclays)')">Select</button></td></tr>
-                        <tr><td>18668</td><td>CP1</td><td>$540.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 18668 (CP1)')">Select</button></td></tr>
-                        <tr><td>6239</td><td>CP1</td><td>$630.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 6239 (CP1)')">Select</button></td></tr>
-                        <tr><td>27784</td><td>Chase</td><td>$630.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 27784 (Chase)')">Select</button></td></tr>
-                        <tr><td>21738</td><td>Chase</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 21738 (Chase)')">Select</button></td></tr>
-                        <tr><td>14816</td><td>Chase</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 14816 (Chase)')">Select</button></td></tr>
-                        <tr><td>32115</td><td>CP1</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 32115 (CP1)')">Select</button></td></tr>
-                        <tr><td>10836</td><td>Discover/CP1</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 10836 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>8555</td><td>Chase</td><td>$690.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 8555 (Chase)')">Select</button></td></tr>
-                        <tr><td>17337</td><td>Chase</td><td>$690.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 17337 (Chase)')">Select</button></td></tr>
-                        <tr><td>40043</td><td>CP1</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40043 (CP1)')">Select</button></td></tr>
-                        <tr><td>31045</td><td>Chase</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31045 (Chase)')">Select</button></td></tr>
-                        <tr><td>11812</td><td>CP1</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 11812 (CP1)')">Select</button></td></tr>
-                        <tr><td>29447</td><td>CP1</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 29447 (CP1)')">Select</button></td></tr>
-                        <tr><td>25411</td><td>Chase</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 25411 (Chase)')">Select</button></td></tr>
-                        <tr><td>22834</td><td>Chase</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 22834 (Chase)')">Select</button></td></tr>
-                        <tr><td>14815</td><td>Chase</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 14815 (Chase)')">Select</button></td></tr>
-                        <tr><td>27831</td><td>Chase</td><td>$900.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 27831 (Chase)')">Select</button></td></tr>
-                        <tr><td>25412</td><td>Chase</td><td>$900.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 25412 (Chase)')">Select</button></td></tr>
-                        <tr><td>25246</td><td>Chase</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 25246 (Chase)')">Select</button></td></tr>
-                        <tr><td>11868</td><td>Discover/CP1</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 11868 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>16280</td><td>CP1</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 16280 (CP1)')">Select</button></td></tr>
-                        <tr><td>13246</td><td>Chase</td><td>$1,440.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 13246 (Chase)')">Select</button></td></tr>
-                        <tr><td>27475</td><td>CP1</td><td>$1,500.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 27475 (CP1)')">Select</button></td></tr>
-                        <tr><td>19566</td><td>Chase</td><td>$1,860.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 19566 (Chase)')">Select</button></td></tr>
-                        <tr><td>40105</td><td>CP1</td><td>$390.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40105 (CP1)')">Select</button></td></tr>
-                        <tr><td>23282</td><td>Chase</td><td>$480.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 23282 (Chase)')">Select</button></td></tr>
-                        <tr><td>12570</td><td>CP1</td><td>$480.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 12570 (CP1)')">Select</button></td></tr>
-                        <tr><td>17339</td><td>Barclays</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 17339 (Barclays)')">Select</button></td></tr>
-                        <tr><td>21172</td><td>Chase</td><td>$540.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 21172 (Chase)')">Select</button></td></tr>
-                        <tr><td>21242</td><td>CP1</td><td>$570.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 21242 (CP1)')">Select</button></td></tr>
-                        <tr><td>26444</td><td>Barclays</td><td>$570.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 26444 (Barclays)')">Select</button></td></tr>
-                        <tr><td>28858</td><td>CP1</td><td>$630.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 28858 (CP1)')">Select</button></td></tr>
-                        <tr><td>31521</td><td>CP1</td><td>$630.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31521 (CP1)')">Select</button></td></tr>
-                        <tr><td>29547</td><td>Chase</td><td>$630.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 29547 (Chase)')">Select</button></td></tr>
-                        <tr><td>9940</td><td>Chase</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 9940 (Chase)')">Select</button></td></tr>
-                        <tr><td>31044</td><td>Chase</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31044 (Chase)')">Select</button></td></tr>
-                        <tr><td>19682</td><td>Chase</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 19682 (Chase)')">Select</button></td></tr>
-                        <tr><td>18087</td><td>Barclays</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 18087 (Barclays)')">Select</button></td></tr>
-                        <tr><td>15603</td><td>Chase</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 15603 (Chase)')">Select</button></td></tr>
-                        <tr><td>32481</td><td>Bank of America</td><td>$690.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 32481 (Bank of America)')">Select</button></td></tr>
-                        <tr><td>40122</td><td>CP1</td><td>$690.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40122 (CP1)')">Select</button></td></tr>
-                        <tr><td>7020</td><td>Chase</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 7020 (Chase)')">Select</button></td></tr>
-                        <tr><td>40048</td><td>CP1</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40048 (CP1)')">Select</button></td></tr>
-                        <tr><td>24393</td><td>Chase</td><td>$750.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 24393 (Chase)')">Select</button></td></tr>
-                        <tr><td>33001</td><td>Chase</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 33001 (Chase)')">Select</button></td></tr>
-                        <tr><td>30283</td><td>Chase</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 30283 (Chase)')">Select</button></td></tr>
-                        <tr><td>6902</td><td>CP1</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 6902 (CP1)')">Select</button></td></tr>
-                        <tr><td>22623</td><td>CP1</td><td>$810.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 22623 (CP1)')">Select</button></td></tr>
-                        <tr><td>25399</td><td>CP1</td><td>$810.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 25399 (CP1)')">Select</button></td></tr>
-                        <tr><td>29878</td><td>Chase</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 29878 (Chase)')">Select</button></td></tr>
-                        <tr><td>27979</td><td>CP1</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 27979 (CP1)')">Select</button></td></tr>
-                        <tr><td>30640</td><td>Chase</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 30640 (Chase)')">Select</button></td></tr>
-                        <tr><td>29876</td><td>CP1</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 29876 (CP1)')">Select</button></td></tr>
-                        <tr><td>30281</td><td>Barclays</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 30281 (Barclays)')">Select</button></td></tr>
-                        <tr><td>28273</td><td>Chase</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 28273 (Chase)')">Select</button></td></tr>
-                        <tr><td>19343</td><td>Chase</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 19343 (Chase)')">Select</button></td></tr>
-                        <tr><td>16485</td><td>Chase</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 16485 (Chase)')">Select</button></td></tr>
-                        <tr><td>40125</td><td>Chase</td><td>$900.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40125 (Chase)')">Select</button></td></tr>
-                        <tr><td>24676</td><td>Chase</td><td>$900.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 24676 (Chase)')">Select</button></td></tr>
-                        <tr><td>2560</td><td>Barclays</td><td>$900.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 2560 (Barclays)')">Select</button></td></tr>
-                        <tr><td>22161</td><td>Barclays</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 22161 (Barclays)')">Select</button></td></tr>
-                        <tr><td>27147</td><td>Chase</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 27147 (Chase)')">Select</button></td></tr>
-                        <tr><td>15369</td><td>Chase</td><td>$1,020.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 15369 (Chase)')">Select</button></td></tr>
-                        <tr><td>30244</td><td>Chase</td><td>$1,140.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 30244 (Chase)')">Select</button></td></tr>
-                        <tr><td>31905</td><td>Chase</td><td>$1,380.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31905 (Chase)')">Select</button></td></tr>
-                        <tr><td>32733</td><td>Bank of America</td><td>$1,380.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 32733 (Bank of America)')">Select</button></td></tr>
-                        <tr><td>11296</td><td>Chase</td><td>$1,380.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 11296 (Chase)')">Select</button></td></tr>
-                        <tr><td>40103</td><td>Discover/CP1</td><td>$390.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40103 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>11960</td><td>Discover/CP1</td><td>$480.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 11960 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>17127</td><td>Barclays</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 17127 (Barclays)')">Select</button></td></tr>
-                        <tr><td>8030</td><td>Discover/CP1</td><td>$570.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 8030 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>10885</td><td>Chase</td><td>$630.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 10885 (Chase)')">Select</button></td></tr>
-                        <tr><td>12026</td><td>Chase</td><td>$630.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 12026 (Chase)')">Select</button></td></tr>
-                        <tr><td>17150</td><td>CP1</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 17150 (CP1)')">Select</button></td></tr>
-                        <tr><td>12054</td><td>Discover/CP1</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 12054 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>25561</td><td>CP1</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 25561 (CP1)')">Select</button></td></tr>
-                        <tr><td>40099</td><td>Elan</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40099 (Elan)')">Select</button></td></tr>
-                        <tr><td>11706</td><td>Discover/CP1</td><td>$690.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 11706 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>33002</td><td>Bank of America</td><td>$690.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 33002 (Bank of America)')">Select</button></td></tr>
-                        <tr><td>33085</td><td>Chase</td><td>$690.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 33085 (Chase)')">Select</button></td></tr>
-                        <tr><td>31611</td><td>CP1</td><td>$690.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31611 (CP1)')">Select</button></td></tr>
-                        <tr><td>28218</td><td>Chase</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 28218 (Chase)')">Select</button></td></tr>
-                        <tr><td>20912</td><td>Chase</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 20912 (Chase)')">Select</button></td></tr>
-                        <tr><td>30906</td><td>Chase</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 30906 (Chase)')">Select</button></td></tr>
-                        <tr><td>10384</td><td>Discover/CP1</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 10384 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>30907</td><td>Chase</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 30907 (Chase)')">Select</button></td></tr>
-                        <tr><td>3230</td><td>Chase</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 3230 (Chase)')">Select</button></td></tr>
-                        <tr><td>21944</td><td>CP1</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 21944 (CP1)')">Select</button></td></tr>
-                        <tr><td>25548</td><td>Discover/CP1</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 25548 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>29509</td><td>CP1</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 29509 (CP1)')">Select</button></td></tr>
-                        <tr><td>40033</td><td>Discover/CP1</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40033 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>33041</td><td>Chase</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 33041 (Chase)')">Select</button></td></tr>
-                        <tr><td>7680</td><td>Chase</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 7680 (Chase)')">Select</button></td></tr>
-                        <tr><td>28893</td><td>Discover/CP1</td><td>$1,020.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 28893 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>24361</td><td>Chase</td><td>$1,020.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 24361 (Chase)')">Select</button></td></tr>
-                        <tr><td>31884</td><td>Discover/CP1</td><td>$1,440.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31884 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>20140</td><td>Chase</td><td>$1,440.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 20140 (Chase)')">Select</button></td></tr>
-                        <tr><td>16152</td><td>Chase</td><td>$1,440.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 16152 (Chase)')">Select</button></td></tr>
-                        <tr><td>22872</td><td>Barclays</td><td>$342.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 22872 (Barclays)')">Select</button></td></tr>
-                        <tr><td>32632</td><td>CP1</td><td>$390.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 32632 (CP1)')">Select</button></td></tr>
-                        <tr><td>6908</td><td>Barclays</td><td>$450.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 6908 (Barclays)')">Select</button></td></tr>
-                        <tr><td>40098</td><td>CP1</td><td>$450.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40098 (CP1)')">Select</button></td></tr>
-                        <tr><td>9834</td><td>CP1</td><td>$480.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 9834 (CP1)')">Select</button></td></tr>
-                        <tr><td>32951</td><td>CP1</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 32951 (CP1)')">Select</button></td></tr>
-                        <tr><td>40080</td><td>CP1</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40080 (CP1)')">Select</button></td></tr>
-                        <tr><td>11982</td><td>CP1</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 11982 (CP1)')">Select</button></td></tr>
-                        <tr><td>21092</td><td>Chase</td><td>$540.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 21092 (Chase)')">Select</button></td></tr>
-                        <tr><td>32950</td><td>CP1</td><td>$570.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 32950 (CP1)')">Select</button></td></tr>
-                        <tr><td>40072</td><td>Barclays</td><td>$570.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40072 (Barclays)')">Select</button></td></tr>
-                        <tr><td>18075</td><td>Barclays</td><td>$630.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 18075 (Barclays)')">Select</button></td></tr>
-                        <tr><td>11125</td><td>Barclays</td><td>$630.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 11125 (Barclays)')">Select</button></td></tr>
-                        <tr><td>15592</td><td>CP1</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 15592 (CP1)')">Select</button></td></tr>
-                        <tr><td>25138</td><td>Discover/CP1</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 25138 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>19011</td><td>Chase</td><td>$690.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 19011 (Chase)')">Select</button></td></tr>
-                        <tr><td>12162</td><td>Chase</td><td>$690.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 12162 (Chase)')">Select</button></td></tr>
-                        <tr><td>19517</td><td>Barclays</td><td>$690.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 19517 (Barclays)')">Select</button></td></tr>
-                        <tr><td>28364</td><td>CP1</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 28364 (CP1)')">Select</button></td></tr>
-                        <tr><td>17627</td><td>Discover/CP1</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 17627 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>29892</td><td>Chase</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 29892 (Chase)')">Select</button></td></tr>
-                        <tr><td>22493</td><td>Discover/CP1</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 22493 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>26740</td><td>Chase</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 26740 (Chase)')">Select</button></td></tr>
-                        <tr><td>12976</td><td>CP1</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 12976 (CP1)')">Select</button></td></tr>
-                        <tr><td>7043</td><td>Chase</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 7043 (Chase)')">Select</button></td></tr>
-                        <tr><td>10432</td><td>CP1</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 10432 (CP1)')">Select</button></td></tr>
-                        <tr><td>22931</td><td>Chase</td><td>$750.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 22931 (Chase)')">Select</button></td></tr>
-                        <tr><td>5018</td><td>Barclays</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 5018 (Barclays)')">Select</button></td></tr>
-                        <tr><td>18030</td><td>CP1</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 18030 (CP1)')">Select</button></td></tr>
-                        <tr><td>16919</td><td>Barclays</td><td>$810.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 16919 (Barclays)')">Select</button></td></tr>
-                        <tr><td>4030</td><td>CP1</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 4030 (CP1)')">Select</button></td></tr>
-                        <tr><td>28636</td><td>CP1</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 28636 (CP1)')">Select</button></td></tr>
-                        <tr><td>15347</td><td>Chase</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 15347 (Chase)')">Select</button></td></tr>
-                        <tr><td>9985</td><td>Chase</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 9985 (Chase)')">Select</button></td></tr>
-                        <tr><td>40061</td><td>Discover/CP1</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40061 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>19548</td><td>Chase</td><td>$900.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 19548 (Chase)')">Select</button></td></tr>
-                        <tr><td>18029</td><td>CP1</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 18029 (CP1)')">Select</button></td></tr>
-                        <tr><td>15314</td><td>Chase</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 15314 (Chase)')">Select</button></td></tr>
-                        <tr><td>23806</td><td>Chase</td><td>$1,020.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 23806 (Chase)')">Select</button></td></tr>
-                        <tr><td>31712</td><td>Barclays</td><td>$1,050.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31712 (Barclays)')">Select</button></td></tr>
-                        <tr><td>12184</td><td>Discover/CP1</td><td>$1,380.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 12184 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>26439</td><td>CP1</td><td>$1,560.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 26439 (CP1)')">Select</button></td></tr>
-                        <tr><td>15875</td><td>Bank of America</td><td>$1,620.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 15875 (Bank of America)')">Select</button></td></tr>
-                        <tr><td>32530</td><td>Discover/CP1</td><td>$390.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 32530 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>31895</td><td>CP1</td><td>$390.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31895 (CP1)')">Select</button></td></tr>
-                        <tr><td>30747</td><td>Chase</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 30747 (Chase)')">Select</button></td></tr>
-                        <tr><td>22871</td><td>Barclays</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 22871 (Barclays)')">Select</button></td></tr>
-                        <tr><td>19309</td><td>Discover/CP1</td><td>$540.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 19309 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>31405</td><td>Chase</td><td>$540.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31405 (Chase)')">Select</button></td></tr>
-                        <tr><td>3902</td><td>Barclays</td><td>$570.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 3902 (Barclays)')">Select</button></td></tr>
-                        <tr><td>30137</td><td>Barclays</td><td>$570.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 30137 (Barclays)')">Select</button></td></tr>
-                        <tr><td>31000</td><td>Chase</td><td>$600.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31000 (Chase)')">Select</button></td></tr>
-                        <tr><td>30639</td><td>Chase</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 30639 (Chase)')">Select</button></td></tr>
-                        <tr><td>21840</td><td>Barclays</td><td>$690.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 21840 (Barclays)')">Select</button></td></tr>
-                        <tr><td>40090</td><td>CP1</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40090 (CP1)')">Select</button></td></tr>
-                        <tr><td>12456</td><td>Chase</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 12456 (Chase)')">Select</button></td></tr>
-                        <tr><td>22855</td><td>Chase</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 22855 (Chase)')">Select</button></td></tr>
-                        <tr><td>15645</td><td>Chase</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 15645 (Chase)')">Select</button></td></tr>
-                        <tr><td>6359</td><td>Discover/CP1</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 6359 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>12566</td><td>Barclays</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 12566 (Barclays)')">Select</button></td></tr>
-                        <tr><td>23041</td><td>Chase</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 23041 (Chase)')">Select</button></td></tr>
-                        <tr><td>31510</td><td>Chase</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31510 (Chase)')">Select</button></td></tr>
-                        <tr><td>20074</td><td>Chase</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 20074 (Chase)')">Select</button></td></tr>
-                        <tr><td>32845</td><td>Chase</td><td>$900.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 32845 (Chase)')">Select</button></td></tr>
-                        <tr><td>23853</td><td>Chase</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 23853 (Chase)')">Select</button></td></tr>
-                        <tr><td>25103</td><td>Chase</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 25103 (Chase)')">Select</button></td></tr>
-                        <tr><td>22979</td><td>CP1</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 22979 (CP1)')">Select</button></td></tr>
-                        <tr><td>1211</td><td>Barclays</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 1211 (Barclays)')">Select</button></td></tr>
-                        <tr><td>31950</td><td>Elan</td><td>$1,020.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31950 (Elan)')">Select</button></td></tr>
-                        <tr><td>22854</td><td>Chase</td><td>$1,020.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 22854 (Chase)')">Select</button></td></tr>
-                        <tr><td>31046</td><td>Discover/CP1</td><td>$1,140.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31046 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>26633</td><td>Chase</td><td>$1,380.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 26633 (Chase)')">Select</button></td></tr>
-                        <tr><td>6494</td><td>Chase</td><td>$1,440.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 6494 (Chase)')">Select</button></td></tr>
-                        <tr><td>16877</td><td>Chase</td><td>$1,440.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 16877 (Chase)')">Select</button></td></tr>
-                        <tr><td>19608</td><td>Chase</td><td>$1,440.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 19608 (Chase)')">Select</button></td></tr>
-                        <tr><td>18381</td><td>Chase</td><td>$1,440.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 18381 (Chase)')">Select</button></td></tr>
-                        <tr><td>16876</td><td>Chase</td><td>$1,500.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 16876 (Chase)')">Select</button></td></tr>
-                        <tr><td>32871</td><td>Elan</td><td>$1,800.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 32871 (Elan)')">Select</button></td></tr>
-                        <tr><td>15820</td><td>Chase</td><td>$1,800.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 15820 (Chase)')">Select</button></td></tr>
-                        <tr><td>32022</td><td>Discover/CP1</td><td>$450.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 32022 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>40117</td><td>CP1</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40117 (CP1)')">Select</button></td></tr>
-                        <tr><td>25024</td><td>Chase</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 25024 (Chase)')">Select</button></td></tr>
-                        <tr><td>15371</td><td>CP1</td><td>$540.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 15371 (CP1)')">Select</button></td></tr>
-                        <tr><td>23938</td><td>CP1</td><td>$540.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 23938 (CP1)')">Select</button></td></tr>
-                        <tr><td>28785</td><td>CP1</td><td>$570.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 28785 (CP1)')">Select</button></td></tr>
-                        <tr><td>14496</td><td>Chase</td><td>$600.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 14496 (Chase)')">Select</button></td></tr>
-                        <tr><td>10654</td><td>Chase</td><td>$630.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 10654 (Chase)')">Select</button></td></tr>
-                        <tr><td>15241</td><td>Chase</td><td>$630.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 15241 (Chase)')">Select</button></td></tr>
-                        <tr><td>22687</td><td>CP1</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 22687 (CP1)')">Select</button></td></tr>
-                        <tr><td>21900</td><td>Chase</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 21900 (Chase)')">Select</button></td></tr>
-                        <tr><td>21835</td><td>CP1</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 21835 (CP1)')">Select</button></td></tr>
-                        <tr><td>28718</td><td>Chase</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 28718 (Chase)')">Select</button></td></tr>
-                        <tr><td>30830</td><td>Chase</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 30830 (Chase)')">Select</button></td></tr>
-                        <tr><td>28022</td><td>Chase</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 28022 (Chase)')">Select</button></td></tr>
-                        <tr><td>7365</td><td>Discover/CP1</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 7365 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>16141</td><td>CP1</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 16141 (CP1)')">Select</button></td></tr>
-                        <tr><td>40110</td><td>CP1</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40110 (CP1)')">Select</button></td></tr>
-                        <tr><td>25540</td><td>Chase</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 25540 (Chase)')">Select</button></td></tr>
-                        <tr><td>16841</td><td>CP1</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 16841 (CP1)')">Select</button></td></tr>
-                        <tr><td>28549</td><td>CP1</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 28549 (CP1)')">Select</button></td></tr>
-                        <tr><td>9365</td><td>Discover/CP1</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 9365 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>31765</td><td>CP1</td><td>$900.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31765 (CP1)')">Select</button></td></tr>
-                        <tr><td>28033</td><td>Barclays</td><td>$900.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 28033 (Barclays)')">Select</button></td></tr>
-                        <tr><td>15316</td><td>Chase</td><td>$900.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 15316 (Chase)')">Select</button></td></tr>
-                        <tr><td>28998</td><td>Chase</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 28998 (Chase)')">Select</button></td></tr>
-                        <tr><td>17486</td><td>Chase</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 17486 (Chase)')">Select</button></td></tr>
-                        <tr><td>24598</td><td>Discover/CP1</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 24598 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>19014</td><td>CP1</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 19014 (CP1)')">Select</button></td></tr>
-                        <tr><td>17051</td><td>Chase</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 17051 (Chase)')">Select</button></td></tr>
-                        <tr><td>7996</td><td>Chase</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 7996 (Chase)')">Select</button></td></tr>
-                        <tr><td>28821</td><td>Discover/CP1</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 28821 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>31237</td><td>Chase</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31237 (Chase)')">Select</button></td></tr>
-                        <tr><td>22777</td><td>Chase</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 22777 (Chase)')">Select</button></td></tr>
-                        <tr><td>28206</td><td>Chase</td><td>$1,020.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 28206 (Chase)')">Select</button></td></tr>
-                        <tr><td>32720</td><td>Discover/CP1</td><td>$1,440.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 32720 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>10506</td><td>Barclays</td><td>$1,500.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 10506 (Barclays)')">Select</button></td></tr>
-                        <tr><td>17508</td><td>Chase</td><td>$1,500.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 17508 (Chase)')">Select</button></td></tr>
-                        <tr><td>40093</td><td>Barclays</td><td>$450.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40093 (Barclays)')">Select</button></td></tr>
-                        <tr><td>29018</td><td>Chase</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 29018 (Chase)')">Select</button></td></tr>
-                        <tr><td>31226</td><td>Discover/CP1</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31226 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>31406</td><td>Chase</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31406 (Chase)')">Select</button></td></tr>
-                        <tr><td>19552</td><td>Chase</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 19552 (Chase)')">Select</button></td></tr>
-                        <tr><td>32893</td><td>Chase</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 32893 (Chase)')">Select</button></td></tr>
-                        <tr><td>17485</td><td>CP1</td><td>$540.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 17485 (CP1)')">Select</button></td></tr>
-                        <tr><td>17997</td><td>Discover/CP1</td><td>$540.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 17997 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>40101</td><td>Chase</td><td>$540.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40101 (Chase)')">Select</button></td></tr>
-                        <tr><td>23876</td><td>CP1</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 23876 (CP1)')">Select</button></td></tr>
-                        <tr><td>23875</td><td>CP1</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 23875 (CP1)')">Select</button></td></tr>
-                        <tr><td>8591</td><td>Chase</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 8591 (Chase)')">Select</button></td></tr>
-                        <tr><td>18667</td><td>Discover/CP1</td><td>$660.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 18667 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>23072</td><td>Chase</td><td>$690.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 23072 (Chase)')">Select</button></td></tr>
-                        <tr><td>30135</td><td>Barclays</td><td>$690.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 30135 (Barclays)')">Select</button></td></tr>
-                        <tr><td>32631</td><td>CP1</td><td>$690.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 32631 (CP1)')">Select</button></td></tr>
-                        <tr><td>40071</td><td>Barclays</td><td>$690.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40071 (Barclays)')">Select</button></td></tr>
-                        <tr><td>28550</td><td>Chase</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 28550 (Chase)')">Select</button></td></tr>
-                        <tr><td>27670</td><td>Discover/CP1</td><td>$720.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 27670 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>2971</td><td>CP1</td><td>$750.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 2971 (CP1)')">Select</button></td></tr>
-                        <tr><td>13729</td><td>CP1</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 13729 (CP1)')">Select</button></td></tr>
-                        <tr><td>31381</td><td>Barclays</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31381 (Barclays)')">Select</button></td></tr>
-                        <tr><td>11298</td><td>Barclays</td><td>$810.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 11298 (Barclays)')">Select</button></td></tr>
-                        <tr><td>30820</td><td>CP1</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 30820 (CP1)')">Select</button></td></tr>
-                        <tr><td>32857</td><td>Discover/CP1</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 32857 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>11350</td><td>Chase</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 11350 (Chase)')">Select</button></td></tr>
-                        <tr><td>7040</td><td>Chase</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 7040 (Chase)')">Select</button></td></tr>
-                        <tr><td>16643</td><td>Barclays</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 16643 (Barclays)')">Select</button></td></tr>
-                        <tr><td>11901</td><td>CP1</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 11901 (CP1)')">Select</button></td></tr>
-                        <tr><td>31938</td><td>Discover/CP1</td><td>$900.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31938 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>11512</td><td>Chase</td><td>$900.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 11512 (Chase)')">Select</button></td></tr>
-                        <tr><td>28572</td><td>CP1</td><td>$900.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 28572 (CP1)')">Select</button></td></tr>
-                        <tr><td>40113</td><td>Chase</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40113 (Chase)')">Select</button></td></tr>
-                        <tr><td>32600</td><td>Discover/CP1</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 32600 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>3231</td><td>Chase</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 3231 (Chase)')">Select</button></td></tr>
-                        <tr><td>32743</td><td>Barclays</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 32743 (Barclays)')">Select</button></td></tr>
-                        <tr><td>23151</td><td>CP1</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 23151 (CP1)')">Select</button></td></tr>
-                        <tr><td>16548</td><td>Discover/CP1</td><td>$1,020.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 16548 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>30672</td><td>Chase</td><td>$1,020.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 30672 (Chase)')">Select</button></td></tr>
-                        <tr><td>29546</td><td>Chase</td><td>$1,020.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 29546 (Chase)')">Select</button></td></tr>
-                        <tr><td>2485</td><td>Barclays</td><td>$1,020.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 2485 (Barclays)')">Select</button></td></tr>
-                        <tr><td>8809</td><td>Chase</td><td>$1,080.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 8809 (Chase)')">Select</button></td></tr>
-                        <tr><td>24674</td><td>Barclays</td><td>$1,080.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 24674 (Barclays)')">Select</button></td></tr>
-                        <tr><td>24455</td><td>Chase</td><td>$1,140.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 24455 (Chase)')">Select</button></td></tr>
-                        <tr><td>23463</td><td>Chase</td><td>$1,140.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 23463 (Chase)')">Select</button></td></tr>
-                        <tr><td>29372</td><td>Discover/CP1</td><td>$1,380.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 29372 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>15368</td><td>Chase</td><td>$1,500.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 15368 (Chase)')">Select</button></td></tr>
-                        <tr><td>14948</td><td>Chase</td><td>$1,560.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 14948 (Chase)')">Select</button></td></tr>
-                        <tr><td>40075</td><td>CP1</td><td>$480.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40075 (CP1)')">Select</button></td></tr>
-                        <tr><td>26889</td><td>Chase</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 26889 (Chase)')">Select</button></td></tr>
-                        <tr><td>32788</td><td>Bank of America</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 32788 (Bank of America)')">Select</button></td></tr>
-                        <tr><td>40044</td><td>Chase</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 40044 (Chase)')">Select</button></td></tr>
-                        <tr><td>2905</td><td>Chase</td><td>$510.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 2905 (Chase)')">Select</button></td></tr>
-                        <tr><td>10624</td><td>Chase</td><td>$630.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 10624 (Chase)')">Select</button></td></tr>
-                        <tr><td>3236</td><td>Elan</td><td>$750.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 3236 (Elan)')">Select</button></td></tr>
-                        <tr><td>22503</td><td>Chase</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 22503 (Chase)')">Select</button></td></tr>
-                        <tr><td>9895</td><td>Elan</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 9895 (Elan)')">Select</button></td></tr>
-                        <tr><td>3072</td><td>Discover/CP1</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 3072 (Discover/CP1)')">Select</button></td></tr>
-                        <tr><td>27916</td><td>Elan</td><td>$780.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 27916 (Elan)')">Select</button></td></tr>
-                        <tr><td>6565</td><td>Bank of America</td><td>$840.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 6565 (Bank of America)')">Select</button></td></tr>
-                        <tr><td>27126</td><td>Chase</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 27126 (Chase)')">Select</button></td></tr>
-                        <tr><td>31659</td><td>Chase</td><td>$960.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td><button class="card-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="openChatWithService('Tradeline ID 31659 (Chase)')">Select</button></td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Tajiri3 Inc. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Botpress Webchat Integration & Active Triggers -->
-    <script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
-    <script src="https://files.bpcontent.cloud/2026/10/02/18/20261002184708-NHYAO47K.js"></script>
-    <script>
-        window.addEventListener('load', function () {
-            if (window.botpress) {
-                window.botpress.on('webchat:ready', () => {
-                    window.botpress.open();
-                });
-            }
-        });
-
-        function openChatWithService(serviceName) {
-            if (window.botpress) {
-                window.botpress.open();
-                window.botpress.sendPayload({
-                    type: 'text',
-                    text: 'I am interested in ' + serviceName
-                });
-            }
-        }
-    </script>
-</body>
-</html>
+[
+  {
+    "card_id": "40046",
+    "bank": "CP1",
+    "price": "$468.00",
+    "limit": "$6,000",
+    "age": "4 yrs 2 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "25025",
+    "bank": "Chase",
+    "price": "$612.00",
+    "limit": "$2,000",
+    "age": "11 yrs 7 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "27870",
+    "bank": "Barclays",
+    "price": "$612.00",
+    "limit": "$9,000",
+    "age": "5 yrs 9 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "18668",
+    "bank": "CP1",
+    "price": "$648.00",
+    "limit": "$5,750",
+    "age": "9 yrs 2 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "6239",
+    "bank": "CP1",
+    "price": "$756.00",
+    "limit": "$20,000",
+    "age": "4 yrs 10 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "27784",
+    "bank": "Chase",
+    "price": "$756.00",
+    "limit": "$20,000",
+    "age": "4 yrs 9 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "21738",
+    "bank": "Chase",
+    "price": "$792.00",
+    "limit": "$6,500",
+    "age": "13 yrs 4 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "14816",
+    "bank": "Chase",
+    "price": "$792.00",
+    "limit": "$6,000",
+    "age": "12 yrs 7 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "32115",
+    "bank": "CP1",
+    "price": "$792.00",
+    "limit": "$10,000",
+    "age": "7 yrs 8 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "10836",
+    "bank": "Discover/CP1",
+    "price": "$792.00",
+    "limit": "$12,500",
+    "age": "7 yrs 3 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "8555",
+    "bank": "Chase",
+    "price": "$828.00",
+    "limit": "$11,000",
+    "age": "9 yrs 3 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "17337",
+    "bank": "Chase",
+    "price": "$828.00",
+    "limit": "$10,000",
+    "age": "9 yrs 3 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "40043",
+    "bank": "CP1",
+    "price": "$864.00",
+    "limit": "$5,000",
+    "age": "13 yrs 10 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "31045",
+    "bank": "Chase",
+    "price": "$936.00",
+    "limit": "$10,000",
+    "age": "12 yrs 5 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "11812",
+    "bank": "CP1",
+    "price": "$936.00",
+    "limit": "$11,300",
+    "age": "10 yrs 7 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "29447",
+    "bank": "CP1",
+    "price": "$1,008.00",
+    "limit": "$6,300",
+    "age": "20 yrs 10 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "25411",
+    "bank": "Chase",
+    "price": "$1,008.00",
+    "limit": "$10,000",
+    "age": "14 yrs 2 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "22834",
+    "bank": "Chase",
+    "price": "$1,008.00",
+    "limit": "$15,000",
+    "age": "11 yrs 8 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "14815",
+    "bank": "Chase",
+    "price": "$1,008.00",
+    "limit": "$19,800",
+    "age": "9 yrs 6 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "27831",
+    "bank": "Chase",
+    "price": "$1,080.00",
+    "limit": "$17,100",
+    "age": "17 yrs 8 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "25412",
+    "bank": "Chase",
+    "price": "$1,080.00",
+    "limit": "$18,800",
+    "age": "13 yrs 10 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "25246",
+    "bank": "Chase",
+    "price": "$1,152.00",
+    "limit": "$14,500",
+    "age": "20 yrs 3 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "11868",
+    "bank": "Discover/CP1",
+    "price": "$1,152.00",
+    "limit": "$17,500",
+    "age": "20 yrs 0 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "16280",
+    "bank": "CP1",
+    "price": "$1,152.00",
+    "limit": "$10,000",
+    "age": "18 yrs 7 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "13246",
+    "bank": "Chase",
+    "price": "$1,728.00",
+    "limit": "$30,000",
+    "age": "10 yrs 0 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "27475",
+    "bank": "CP1",
+    "price": "$1,800.00",
+    "limit": "$32,000",
+    "age": "18 yrs 1 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "19566",
+    "bank": "Chase",
+    "price": "$2,232.00",
+    "limit": "$40,000",
+    "age": "18 yrs 10 mo",
+    "purchase_deadline": "Oct 10th",
+    "reporting_period": "Oct 21st - Oct 28th"
+  },
+  {
+    "card_id": "40105",
+    "bank": "CP1",
+    "price": "$468.00",
+    "limit": "$10,000",
+    "age": "2 yrs 0 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "23282",
+    "bank": "Chase",
+    "price": "$576.00",
+    "limit": "$11,700",
+    "age": "4 yrs 6 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "12570",
+    "bank": "CP1",
+    "price": "$576.00",
+    "limit": "$10,000",
+    "age": "4 yrs 5 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "17339",
+    "bank": "Barclays",
+    "price": "$612.00",
+    "limit": "$9,600",
+    "age": "5 yrs 6 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "21172",
+    "bank": "Chase",
+    "price": "$648.00",
+    "limit": "$30,400",
+    "age": "1 yr 11 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "21242",
+    "bank": "CP1",
+    "price": "$684.00",
+    "limit": "$20,000",
+    "age": "4 yrs 1 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "26444",
+    "bank": "Barclays",
+    "price": "$684.00",
+    "limit": "$20,000",
+    "age": "3 yrs 7 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "28858",
+    "bank": "CP1",
+    "price": "$756.00",
+    "limit": "$7,500",
+    "age": "8 yrs 5 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "31521",
+    "bank": "CP1",
+    "price": "$756.00",
+    "limit": "$15,500",
+    "age": "6 yrs 8 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "29547",
+    "bank": "Chase",
+    "price": "$756.00",
+    "limit": "$20,000",
+    "age": "4 yrs 5 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "9940",
+    "bank": "Chase",
+    "price": "$792.00",
+    "limit": "$7,100",
+    "age": "12 yrs 2 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "31044",
+    "bank": "Chase",
+    "price": "$792.00",
+    "limit": "$5,000",
+    "age": "11 yrs 6 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "19682",
+    "bank": "Chase",
+    "price": "$792.00",
+    "limit": "$13,000",
+    "age": "8 yrs 3 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "18087",
+    "bank": "Barclays",
+    "price": "$792.00",
+    "limit": "$10,000",
+    "age": "7 yrs 9 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "15603",
+    "bank": "Chase",
+    "price": "$792.00",
+    "limit": "$12,400",
+    "age": "7 yrs 6 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "32481",
+    "bank": "Bank of America",
+    "price": "$828.00",
+    "limit": "$8,900",
+    "age": "10 yrs 2 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "40122",
+    "bank": "CP1",
+    "price": "$828.00",
+    "limit": "$33,000",
+    "age": "3 yrs 3 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "7020",
+    "bank": "Chase",
+    "price": "$864.00",
+    "limit": "$15,900",
+    "age": "7 yrs 6 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "40048",
+    "bank": "CP1",
+    "price": "$864.00",
+    "limit": "$20,000",
+    "age": "5 yrs 4 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "24393",
+    "bank": "Chase",
+    "price": "$900.00",
+    "limit": "$24,000",
+    "age": "6 yrs 9 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "33001",
+    "bank": "Chase",
+    "price": "$936.00",
+    "limit": "$8,000",
+    "age": "19 yrs 7 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "30283",
+    "bank": "Chase",
+    "price": "$936.00",
+    "limit": "$21,500",
+    "age": "7 yrs 7 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "6902",
+    "bank": "CP1",
+    "price": "$936.00",
+    "limit": "$30,000",
+    "age": "4 yrs 10 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "22623",
+    "bank": "CP1",
+    "price": "$972.00",
+    "limit": "$10,000",
+    "age": "17 yrs 5 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "25399",
+    "bank": "CP1",
+    "price": "$972.00",
+    "limit": "$27,500",
+    "age": "5 yrs 9 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "29878",
+    "bank": "Chase",
+    "price": "$1,008.00",
+    "limit": "$10,000",
+    "age": "17 yrs 4 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "27979",
+    "bank": "CP1",
+    "price": "$1,008.00",
+    "limit": "$11,250",
+    "age": "15 yrs 0 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "30640",
+    "bank": "Chase",
+    "price": "$1,008.00",
+    "limit": "$10,000",
+    "age": "14 yrs 10 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "29876",
+    "bank": "CP1",
+    "price": "$1,008.00",
+    "limit": "$19,000",
+    "age": "12 yrs 7 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "30281",
+    "bank": "Barclays",
+    "price": "$1,008.00",
+    "limit": "$15,019",
+    "age": "11 yrs 6 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "28273",
+    "bank": "Chase",
+    "price": "$1,008.00",
+    "limit": "$16,300",
+    "age": "11 yrs 0 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "19343",
+    "bank": "Chase",
+    "price": "$1,008.00",
+    "limit": "$16,400",
+    "age": "10 yrs 10 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "16485",
+    "bank": "Chase",
+    "price": "$1,008.00",
+    "limit": "$15,000",
+    "age": "9 yrs 6 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "40125",
+    "bank": "Chase",
+    "price": "$1,080.00",
+    "limit": "$18,600",
+    "age": "18 yrs 9 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "24676",
+    "bank": "Chase",
+    "price": "$1,080.00",
+    "limit": "$30,200",
+    "age": "6 yrs 10 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "2560",
+    "bank": "Barclays",
+    "price": "$1,080.00",
+    "limit": "$30,000",
+    "age": "5 yrs 7 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "22161",
+    "bank": "Barclays",
+    "price": "$1,152.00",
+    "limit": "$20,900",
+    "age": "12 yrs 5 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "27147",
+    "bank": "Chase",
+    "price": "$1,152.00",
+    "limit": "$19,000",
+    "age": "10 yrs 11 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "15369",
+    "bank": "Chase",
+    "price": "$1,224.00",
+    "limit": "$29,100",
+    "age": "9 yrs 3 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "30244",
+    "bank": "Chase",
+    "price": "$1,368.00",
+    "limit": "$25,000",
+    "age": "15 yrs 8 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "31905",
+    "bank": "Chase",
+    "price": "$1,656.00",
+    "limit": "$25,000",
+    "age": "20 yrs 11 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "32733",
+    "bank": "Bank of America",
+    "price": "$1,656.00",
+    "limit": "$25,000",
+    "age": "19 yrs 3 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "11296",
+    "bank": "Chase",
+    "price": "$1,656.00",
+    "limit": "$21,000",
+    "age": "18 yrs 4 mo",
+    "purchase_deadline": "Oct 11th",
+    "reporting_period": "Oct 22nd - Oct 29th"
+  },
+  {
+    "card_id": "40103",
+    "bank": "Discover/CP1",
+    "price": "$468.00",
+    "limit": "$5,500",
+    "age": "4 yrs 0 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "11960",
+    "bank": "Discover/CP1",
+    "price": "$576.00",
+    "limit": "$5,500",
+    "age": "6 yrs 3 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "17127",
+    "bank": "Barclays",
+    "price": "$612.00",
+    "limit": "$3,019",
+    "age": "12 yrs 8 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "8030",
+    "bank": "Discover/CP1",
+    "price": "$684.00",
+    "limit": "$14,000",
+    "age": "6 yrs 7 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "10885",
+    "bank": "Chase",
+    "price": "$756.00",
+    "limit": "$20,400",
+    "age": "4 yrs 6 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "12026",
+    "bank": "Chase",
+    "price": "$756.00",
+    "limit": "$22,500",
+    "age": "4 yrs 5 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "17150",
+    "bank": "CP1",
+    "price": "$792.00",
+    "limit": "$5,800",
+    "age": "12 yrs 0 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "12054",
+    "bank": "Discover/CP1",
+    "price": "$792.00",
+    "limit": "$11,700",
+    "age": "7 yrs 9 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "25561",
+    "bank": "CP1",
+    "price": "$792.00",
+    "limit": "$30,000",
+    "age": "2 yrs 6 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "40099",
+    "bank": "Elan",
+    "price": "$792.00",
+    "limit": "$35,000",
+    "age": "2 yrs 1 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "11706",
+    "bank": "Discover/CP1",
+    "price": "$828.00",
+    "limit": "$12,100",
+    "age": "8 yrs 11 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "33002",
+    "bank": "Bank of America",
+    "price": "$828.00",
+    "limit": "$11,000",
+    "age": "8 yrs 9 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "33085",
+    "bank": "Chase",
+    "price": "$828.00",
+    "limit": "$25,900",
+    "age": "4 yrs 4 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "31611",
+    "bank": "CP1",
+    "price": "$828.00",
+    "limit": "$30,000",
+    "age": "3 yrs 7 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "28218",
+    "bank": "Chase",
+    "price": "$864.00",
+    "limit": "$12,500",
+    "age": "9 yrs 7 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "20912",
+    "bank": "Chase",
+    "price": "$864.00",
+    "limit": "$12,000",
+    "age": "9 yrs 7 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "30906",
+    "bank": "Chase",
+    "price": "$864.00",
+    "limit": "$16,400",
+    "age": "8 yrs 3 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "10384",
+    "bank": "Discover/CP1",
+    "price": "$864.00",
+    "limit": "$15,500",
+    "age": "7 yrs 6 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "30907",
+    "bank": "Chase",
+    "price": "$936.00",
+    "limit": "$7,500",
+    "age": "15 yrs 11 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "3230",
+    "bank": "Chase",
+    "price": "$936.00",
+    "limit": "$14,000",
+    "age": "11 yrs 10 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "21944",
+    "bank": "CP1",
+    "price": "$936.00",
+    "limit": "$10,000",
+    "age": "11 yrs 7 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "25548",
+    "bank": "Discover/CP1",
+    "price": "$936.00",
+    "limit": "$15,500",
+    "age": "8 yrs 11 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "29509",
+    "bank": "CP1",
+    "price": "$1,008.00",
+    "limit": "$14,000",
+    "age": "16 yrs 4 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "40033",
+    "bank": "Discover/CP1",
+    "price": "$1,008.00",
+    "limit": "$16,800",
+    "age": "11 yrs 10 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "33041",
+    "bank": "Chase",
+    "price": "$1,008.00",
+    "limit": "$15,000",
+    "age": "10 yrs 3 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "7680",
+    "bank": "Chase",
+    "price": "$1,152.00",
+    "limit": "$20,850",
+    "age": "10 yrs 2 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "28893",
+    "bank": "Discover/CP1",
+    "price": "$1,224.00",
+    "limit": "$20,000",
+    "age": "15 yrs 7 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "24361",
+    "bank": "Chase",
+    "price": "$1,224.00",
+    "limit": "$21,000",
+    "age": "14 yrs 10 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "31884",
+    "bank": "Discover/CP1",
+    "price": "$1,728.00",
+    "limit": "$30,000",
+    "age": "11 yrs 6 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "20140",
+    "bank": "Chase",
+    "price": "$1,728.00",
+    "limit": "$32,000",
+    "age": "10 yrs 11 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "16152",
+    "bank": "Chase",
+    "price": "$1,728.00",
+    "limit": "$42,000",
+    "age": "10 yrs 4 mo",
+    "purchase_deadline": "Oct 12th",
+    "reporting_period": "Oct 23rd - Oct 30th"
+  },
+  {
+    "card_id": "22872",
+    "bank": "Barclays",
+    "price": "$410.40",
+    "limit": "$5,000",
+    "age": "2 yrs 3 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "32632",
+    "bank": "CP1",
+    "price": "$468.00",
+    "limit": "$11,000",
+    "age": "3 yrs 2 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "6908",
+    "bank": "Barclays",
+    "price": "$540.00",
+    "limit": "$5,000",
+    "age": "6 yrs 1 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "40098",
+    "bank": "CP1",
+    "price": "$540.00",
+    "limit": "$15,000",
+    "age": "3 yrs 8 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "9834",
+    "bank": "CP1",
+    "price": "$576.00",
+    "limit": "$3,500",
+    "age": "7 yrs 9 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "32951",
+    "bank": "CP1",
+    "price": "$612.00",
+    "limit": "$2,250",
+    "age": "14 yrs 0 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "40080",
+    "bank": "CP1",
+    "price": "$612.00",
+    "limit": "$6,500",
+    "age": "7 yrs 1 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "11982",
+    "bank": "CP1",
+    "price": "$612.00",
+    "limit": "$20,000",
+    "age": "2 yrs 8 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "21092",
+    "bank": "Chase",
+    "price": "$648.00",
+    "limit": "$9,900",
+    "age": "8 yrs 1 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "32950",
+    "bank": "CP1",
+    "price": "$684.00",
+    "limit": "$6,500",
+    "age": "9 yrs 3 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "40072",
+    "bank": "Barclays",
+    "price": "$684.00",
+    "limit": "$7,000",
+    "age": "8 yrs 11 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "18075",
+    "bank": "Barclays",
+    "price": "$756.00",
+    "limit": "$19,000",
+    "age": "7 yrs 1 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "11125",
+    "bank": "Barclays",
+    "price": "$756.00",
+    "limit": "$15,000",
+    "age": "6 yrs 4 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "15592",
+    "bank": "CP1",
+    "price": "$792.00",
+    "limit": "$5,300",
+    "age": "14 yrs 3 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "25138",
+    "bank": "Discover/CP1",
+    "price": "$792.00",
+    "limit": "$6,100",
+    "age": "11 yrs 10 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "19011",
+    "bank": "Chase",
+    "price": "$828.00",
+    "limit": "$7,500",
+    "age": "11 yrs 9 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "12162",
+    "bank": "Chase",
+    "price": "$828.00",
+    "limit": "$13,600",
+    "age": "8 yrs 6 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "19517",
+    "bank": "Barclays",
+    "price": "$828.00",
+    "limit": "$32,600",
+    "age": "3 yrs 5 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "28364",
+    "bank": "CP1",
+    "price": "$864.00",
+    "limit": "$6,000",
+    "age": "17 yrs 11 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "17627",
+    "bank": "Discover/CP1",
+    "price": "$864.00",
+    "limit": "$5,100",
+    "age": "14 yrs 9 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "29892",
+    "bank": "Chase",
+    "price": "$864.00",
+    "limit": "$11,005",
+    "age": "10 yrs 1 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "22493",
+    "bank": "Discover/CP1",
+    "price": "$864.00",
+    "limit": "$10,100",
+    "age": "9 yrs 10 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "26740",
+    "bank": "Chase",
+    "price": "$864.00",
+    "limit": "$16,100",
+    "age": "7 yrs 11 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "12976",
+    "bank": "CP1",
+    "price": "$864.00",
+    "limit": "$15,000",
+    "age": "7 yrs 11 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "7043",
+    "bank": "Chase",
+    "price": "$864.00",
+    "limit": "$20,500",
+    "age": "5 yrs 11 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "10432",
+    "bank": "CP1",
+    "price": "$864.00",
+    "limit": "$22,000",
+    "age": "5 yrs 5 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "22931",
+    "bank": "Chase",
+    "price": "$900.00",
+    "limit": "$20,100",
+    "age": "6 yrs 8 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "5018",
+    "bank": "Barclays",
+    "price": "$936.00",
+    "limit": "$20,600",
+    "age": "7 yrs 9 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "18030",
+    "bank": "CP1",
+    "price": "$936.00",
+    "limit": "$24,800",
+    "age": "7 yrs 3 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "16919",
+    "bank": "Barclays",
+    "price": "$972.00",
+    "limit": "$25,000",
+    "age": "5 yrs 6 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "4030",
+    "bank": "CP1",
+    "price": "$1,008.00",
+    "limit": "$5,000",
+    "age": "20 yrs 9 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "28636",
+    "bank": "CP1",
+    "price": "$1,008.00",
+    "limit": "$5,000",
+    "age": "20 yrs 9 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "15347",
+    "bank": "Chase",
+    "price": "$1,008.00",
+    "limit": "$16,800",
+    "age": "13 yrs 0 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "9985",
+    "bank": "Chase",
+    "price": "$1,008.00",
+    "limit": "$15,000",
+    "age": "11 yrs 10 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "40061",
+    "bank": "Discover/CP1",
+    "price": "$1,008.00",
+    "limit": "$15,000",
+    "age": "9 yrs 3 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "19548",
+    "bank": "Chase",
+    "price": "$1,080.00",
+    "limit": "$37,300",
+    "age": "6 yrs 2 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "18029",
+    "bank": "CP1",
+    "price": "$1,152.00",
+    "limit": "$20,000",
+    "age": "10 yrs 9 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "15314",
+    "bank": "Chase",
+    "price": "$1,152.00",
+    "limit": "$20,000",
+    "age": "9 yrs 9 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "23806",
+    "bank": "Chase",
+    "price": "$1,224.00",
+    "limit": "$28,000",
+    "age": "9 yrs 9 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "31712",
+    "bank": "Barclays",
+    "price": "$1,260.00",
+    "limit": "$50,000",
+    "age": "5 yrs 1 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "12184",
+    "bank": "Discover/CP1",
+    "price": "$1,656.00",
+    "limit": "$20,000",
+    "age": "19 yrs 1 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "26439",
+    "bank": "CP1",
+    "price": "$1,872.00",
+    "limit": "$30,000",
+    "age": "19 yrs 3 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "15875",
+    "bank": "Bank of America",
+    "price": "$1,944.00",
+    "limit": "$40,000",
+    "age": "14 yrs 7 mo",
+    "purchase_deadline": "Oct 13th",
+    "reporting_period": "Oct 24th - Oct 31st"
+  },
+  {
+    "card_id": "32530",
+    "bank": "Discover/CP1",
+    "price": "$468.00",
+    "limit": "$5,000",
+    "age": "4 yrs 5 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "31895",
+    "bank": "CP1",
+    "price": "$468.00",
+    "limit": "$12,000",
+    "age": "2 yrs 6 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "30747",
+    "bank": "Chase",
+    "price": "$612.00",
+    "limit": "$22,000",
+    "age": "2 yrs 8 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "22871",
+    "bank": "Barclays",
+    "price": "$612.00",
+    "limit": "$20,700",
+    "age": "2 yrs 3 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "19309",
+    "bank": "Discover/CP1",
+    "price": "$648.00",
+    "limit": "$4,500",
+    "age": "9 yrs 11 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "31405",
+    "bank": "Chase",
+    "price": "$648.00",
+    "limit": "$9,000",
+    "age": "6 yrs 9 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "3902",
+    "bank": "Barclays",
+    "price": "$684.00",
+    "limit": "$10,000",
+    "age": "7 yrs 2 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "30137",
+    "bank": "Barclays",
+    "price": "$684.00",
+    "limit": "$23,300",
+    "age": "4 yrs 1 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "31000",
+    "bank": "Chase",
+    "price": "$720.00",
+    "limit": "$15,000",
+    "age": "5 yrs 9 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "30639",
+    "bank": "Chase",
+    "price": "$792.00",
+    "limit": "$7,000",
+    "age": "11 yrs 8 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "21840",
+    "bank": "Barclays",
+    "price": "$828.00",
+    "limit": "$9,300",
+    "age": "12 yrs 1 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "40090",
+    "bank": "CP1",
+    "price": "$864.00",
+    "limit": "$5,500",
+    "age": "14 yrs 10 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "12456",
+    "bank": "Chase",
+    "price": "$864.00",
+    "limit": "$12,300",
+    "age": "10 yrs 1 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "22855",
+    "bank": "Chase",
+    "price": "$864.00",
+    "limit": "$12,500",
+    "age": "10 yrs 0 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "15645",
+    "bank": "Chase",
+    "price": "$936.00",
+    "limit": "$7,500",
+    "age": "14 yrs 6 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "6359",
+    "bank": "Discover/CP1",
+    "price": "$936.00",
+    "limit": "$11,200",
+    "age": "13 yrs 2 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "12566",
+    "bank": "Barclays",
+    "price": "$936.00",
+    "limit": "$22,500",
+    "age": "8 yrs 1 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "23041",
+    "bank": "Chase",
+    "price": "$1,008.00",
+    "limit": "$11,800",
+    "age": "17 yrs 0 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "31510",
+    "bank": "Chase",
+    "price": "$1,008.00",
+    "limit": "$21,600",
+    "age": "9 yrs 1 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "20074",
+    "bank": "Chase",
+    "price": "$1,008.00",
+    "limit": "$23,100",
+    "age": "8 yrs 5 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "32845",
+    "bank": "Chase",
+    "price": "$1,080.00",
+    "limit": "$25,200",
+    "age": "8 yrs 5 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "23853",
+    "bank": "Chase",
+    "price": "$1,152.00",
+    "limit": "$18,000",
+    "age": "20 yrs 7 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "25103",
+    "bank": "Chase",
+    "price": "$1,152.00",
+    "limit": "$17,400",
+    "age": "19 yrs 7 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "22979",
+    "bank": "CP1",
+    "price": "$1,152.00",
+    "limit": "$21,000",
+    "age": "12 yrs 9 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "1211",
+    "bank": "Barclays",
+    "price": "$1,152.00",
+    "limit": "$20,000",
+    "age": "12 yrs 2 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "31950",
+    "bank": "Elan",
+    "price": "$1,224.00",
+    "limit": "$24,500",
+    "age": "15 yrs 3 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "22854",
+    "bank": "Chase",
+    "price": "$1,224.00",
+    "limit": "$20,000",
+    "age": "15 yrs 2 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "31046",
+    "bank": "Discover/CP1",
+    "price": "$1,368.00",
+    "limit": "$29,600",
+    "age": "14 yrs 6 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "26633",
+    "bank": "Chase",
+    "price": "$1,656.00",
+    "limit": "$20,100",
+    "age": "22 yrs 5 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "6494",
+    "bank": "Chase",
+    "price": "$1,728.00",
+    "limit": "$31,000",
+    "age": "10 yrs 7 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "16877",
+    "bank": "Chase",
+    "price": "$1,728.00",
+    "limit": "$30,000",
+    "age": "10 yrs 6 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "19608",
+    "bank": "Chase",
+    "price": "$1,728.00",
+    "limit": "$41,300",
+    "age": "10 yrs 4 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "18381",
+    "bank": "Chase",
+    "price": "$1,728.00",
+    "limit": "$36,900",
+    "age": "10 yrs 3 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "16876",
+    "bank": "Chase",
+    "price": "$1,800.00",
+    "limit": "$30,000",
+    "age": "14 yrs 1 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "32871",
+    "bank": "Elan",
+    "price": "$2,160.00",
+    "limit": "$55,000",
+    "age": "17 yrs 2 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "15820",
+    "bank": "Chase",
+    "price": "$2,160.00",
+    "limit": "$54,500",
+    "age": "13 yrs 7 mo",
+    "purchase_deadline": "Oct 14th",
+    "reporting_period": "Oct 25th - Nov 1st"
+  },
+  {
+    "card_id": "32022",
+    "bank": "Discover/CP1",
+    "price": "$540.00",
+    "limit": "$17,000",
+    "age": "3 yrs 7 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "40117",
+    "bank": "CP1",
+    "price": "$612.00",
+    "limit": "$3,000",
+    "age": "14 yrs 9 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "25024",
+    "bank": "Chase",
+    "price": "$612.00",
+    "limit": "$2,000",
+    "age": "11 yrs 7 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "15371",
+    "bank": "CP1",
+    "price": "$648.00",
+    "limit": "$3,000",
+    "age": "14 yrs 10 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "23938",
+    "bank": "CP1",
+    "price": "$648.00",
+    "limit": "$30,000",
+    "age": "1 yr 4 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "28785",
+    "bank": "CP1",
+    "price": "$684.00",
+    "limit": "$10,000",
+    "age": "7 yrs 4 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "14496",
+    "bank": "Chase",
+    "price": "$720.00",
+    "limit": "$25,100",
+    "age": "3 yrs 3 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "10654",
+    "bank": "Chase",
+    "price": "$756.00",
+    "limit": "$17,600",
+    "age": "6 yrs 5 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "15241",
+    "bank": "Chase",
+    "price": "$756.00",
+    "limit": "$27,000",
+    "age": "3 yrs 7 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "22687",
+    "bank": "CP1",
+    "price": "$792.00",
+    "limit": "$5,500",
+    "age": "11 yrs 5 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "21900",
+    "bank": "Chase",
+    "price": "$792.00",
+    "limit": "$5,000",
+    "age": "10 yrs 0 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "21835",
+    "bank": "CP1",
+    "price": "$792.00",
+    "limit": "$30,000",
+    "age": "3 yrs 1 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "28718",
+    "bank": "Chase",
+    "price": "$864.00",
+    "limit": "$14,500",
+    "age": "10 yrs 0 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "30830",
+    "bank": "Chase",
+    "price": "$864.00",
+    "limit": "$12,000",
+    "age": "9 yrs 6 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "28022",
+    "bank": "Chase",
+    "price": "$864.00",
+    "limit": "$23,000",
+    "age": "6 yrs 4 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "7365",
+    "bank": "Discover/CP1",
+    "price": "$936.00",
+    "limit": "$8,000",
+    "age": "17 yrs 8 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "16141",
+    "bank": "CP1",
+    "price": "$936.00",
+    "limit": "$7,500",
+    "age": "14 yrs 5 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "40110",
+    "bank": "CP1",
+    "price": "$936.00",
+    "limit": "$11,000",
+    "age": "11 yrs 9 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "25540",
+    "bank": "Chase",
+    "price": "$936.00",
+    "limit": "$14,000",
+    "age": "10 yrs 7 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "16841",
+    "bank": "CP1",
+    "price": "$936.00",
+    "limit": "$10,000",
+    "age": "10 yrs 2 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "28549",
+    "bank": "CP1",
+    "price": "$1,008.00",
+    "limit": "$5,400",
+    "age": "20 yrs 3 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "9365",
+    "bank": "Discover/CP1",
+    "price": "$1,008.00",
+    "limit": "$13,500",
+    "age": "13 yrs 9 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "31765",
+    "bank": "CP1",
+    "price": "$1,080.00",
+    "limit": "$9,250",
+    "age": "20 yrs 5 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "28033",
+    "bank": "Barclays",
+    "price": "$1,080.00",
+    "limit": "$15,100",
+    "age": "16 yrs 10 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "15316",
+    "bank": "Chase",
+    "price": "$1,080.00",
+    "limit": "$30,000",
+    "age": "7 yrs 0 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "28998",
+    "bank": "Chase",
+    "price": "$1,152.00",
+    "limit": "$16,800",
+    "age": "21 yrs 8 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "17486",
+    "bank": "Chase",
+    "price": "$1,152.00",
+    "limit": "$11,000",
+    "age": "20 yrs 0 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "24598",
+    "bank": "Discover/CP1",
+    "price": "$1,152.00",
+    "limit": "$12,300",
+    "age": "19 yrs 10 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "19014",
+    "bank": "CP1",
+    "price": "$1,152.00",
+    "limit": "$13,500",
+    "age": "19 yrs 0 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "17051",
+    "bank": "Chase",
+    "price": "$1,152.00",
+    "limit": "$11,000",
+    "age": "18 yrs 0 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "7996",
+    "bank": "Chase",
+    "price": "$1,152.00",
+    "limit": "$22,000",
+    "age": "13 yrs 1 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "28821",
+    "bank": "Discover/CP1",
+    "price": "$1,152.00",
+    "limit": "$20,500",
+    "age": "11 yrs 6 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "31237",
+    "bank": "Chase",
+    "price": "$1,152.00",
+    "limit": "$20,000",
+    "age": "11 yrs 6 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "22777",
+    "bank": "Chase",
+    "price": "$1,152.00",
+    "limit": "$30,000",
+    "age": "8 yrs 8 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "28206",
+    "bank": "Chase",
+    "price": "$1,224.00",
+    "limit": "$29,500",
+    "age": "9 yrs 7 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "32720",
+    "bank": "Discover/CP1",
+    "price": "$1,728.00",
+    "limit": "$36,100",
+    "age": "11 yrs 11 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "10506",
+    "bank": "Barclays",
+    "price": "$1,800.00",
+    "limit": "$20,000",
+    "age": "34 yrs 0 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "17508",
+    "bank": "Chase",
+    "price": "$1,800.00",
+    "limit": "$22,300",
+    "age": "29 yrs 0 mo",
+    "purchase_deadline": "Oct 15th",
+    "reporting_period": "Oct 26th - Nov 2nd"
+  },
+  {
+    "card_id": "40093",
+    "bank": "Barclays",
+    "price": "$540.00",
+    "limit": "$18,000",
+    "age": "3 yrs 1 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "29018",
+    "bank": "Chase",
+    "price": "$612.00",
+    "limit": "$5,000",
+    "age": "8 yrs 2 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "31226",
+    "bank": "Discover/CP1",
+    "price": "$612.00",
+    "limit": "$6,000",
+    "age": "7 yrs 8 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "31406",
+    "bank": "Chase",
+    "price": "$612.00",
+    "limit": "$6,000",
+    "age": "7 yrs 7 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "19552",
+    "bank": "Chase",
+    "price": "$612.00",
+    "limit": "$20,000",
+    "age": "2 yrs 6 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "32893",
+    "bank": "Chase",
+    "price": "$612.00",
+    "limit": "$22,000",
+    "age": "2 yrs 1 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "17485",
+    "bank": "CP1",
+    "price": "$648.00",
+    "limit": "$4,000",
+    "age": "12 yrs 8 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "17997",
+    "bank": "Discover/CP1",
+    "price": "$648.00",
+    "limit": "$3,750",
+    "age": "9 yrs 8 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "40101",
+    "bank": "Chase",
+    "price": "$648.00",
+    "limit": "$8,300",
+    "age": "6 yrs 1 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "23876",
+    "bank": "CP1",
+    "price": "$792.00",
+    "limit": "$5,500",
+    "age": "13 yrs 2 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "23875",
+    "bank": "CP1",
+    "price": "$792.00",
+    "limit": "$7,000",
+    "age": "11 yrs 8 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "8591",
+    "bank": "Chase",
+    "price": "$792.00",
+    "limit": "$8,600",
+    "age": "10 yrs 0 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "18667",
+    "bank": "Discover/CP1",
+    "price": "$792.00",
+    "limit": "$10,700",
+    "age": "7 yrs 7 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "23072",
+    "bank": "Chase",
+    "price": "$828.00",
+    "limit": "$10,000",
+    "age": "11 yrs 6 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "30135",
+    "bank": "Barclays",
+    "price": "$828.00",
+    "limit": "$10,900",
+    "age": "8 yrs 10 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "32631",
+    "bank": "CP1",
+    "price": "$828.00",
+    "limit": "$10,000",
+    "age": "8 yrs 5 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "40071",
+    "bank": "Barclays",
+    "price": "$828.00",
+    "limit": "$10,000",
+    "age": "8 yrs 0 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "28550",
+    "bank": "Chase",
+    "price": "$864.00",
+    "limit": "$5,400",
+    "age": "15 yrs 11 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "27670",
+    "bank": "Discover/CP1",
+    "price": "$864.00",
+    "limit": "$13,500",
+    "age": "9 yrs 6 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "2971",
+    "bank": "CP1",
+    "price": "$900.00",
+    "limit": "$22,000",
+    "age": "6 yrs 9 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "13729",
+    "bank": "CP1",
+    "price": "$936.00",
+    "limit": "$11,500",
+    "age": "17 yrs 7 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "31381",
+    "bank": "Barclays",
+    "price": "$936.00",
+    "limit": "$15,000",
+    "age": "9 yrs 2 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "11298",
+    "bank": "Barclays",
+    "price": "$972.00",
+    "limit": "$25,000",
+    "age": "5 yrs 3 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "30820",
+    "bank": "CP1",
+    "price": "$1,008.00",
+    "limit": "$13,000",
+    "age": "14 yrs 2 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "32857",
+    "bank": "Discover/CP1",
+    "price": "$1,008.00",
+    "limit": "$17,000",
+    "age": "12 yrs 7 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "11350",
+    "bank": "Chase",
+    "price": "$1,008.00",
+    "limit": "$18,000",
+    "age": "11 yrs 8 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "7040",
+    "bank": "Chase",
+    "price": "$1,008.00",
+    "limit": "$15,000",
+    "age": "11 yrs 3 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "16643",
+    "bank": "Barclays",
+    "price": "$1,008.00",
+    "limit": "$22,000",
+    "age": "9 yrs 1 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "11901",
+    "bank": "CP1",
+    "price": "$1,008.00",
+    "limit": "$26,500",
+    "age": "6 yrs 9 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "31938",
+    "bank": "Discover/CP1",
+    "price": "$1,080.00",
+    "limit": "$15,500",
+    "age": "14 yrs 3 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "11512",
+    "bank": "Chase",
+    "price": "$1,080.00",
+    "limit": "$15,000",
+    "age": "13 yrs 5 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "28572",
+    "bank": "CP1",
+    "price": "$1,080.00",
+    "limit": "$30,000",
+    "age": "5 yrs 10 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "40113",
+    "bank": "Chase",
+    "price": "$1,152.00",
+    "limit": "$14,300",
+    "age": "25 yrs 2 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "32600",
+    "bank": "Discover/CP1",
+    "price": "$1,152.00",
+    "limit": "$17,100",
+    "age": "19 yrs 9 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "3231",
+    "bank": "Chase",
+    "price": "$1,152.00",
+    "limit": "$23,800",
+    "age": "10 yrs 6 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "32743",
+    "bank": "Barclays",
+    "price": "$1,152.00",
+    "limit": "$20,000",
+    "age": "10 yrs 2 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "23151",
+    "bank": "CP1",
+    "price": "$1,152.00",
+    "limit": "$20,000",
+    "age": "10 yrs 2 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "16548",
+    "bank": "Discover/CP1",
+    "price": "$1,224.00",
+    "limit": "$20,500",
+    "age": "15 yrs 5 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "30672",
+    "bank": "Chase",
+    "price": "$1,224.00",
+    "limit": "$20,700",
+    "age": "13 yrs 5 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "29546",
+    "bank": "Chase",
+    "price": "$1,224.00",
+    "limit": "$27,500",
+    "age": "10 yrs 1 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "2485",
+    "bank": "Barclays",
+    "price": "$1,224.00",
+    "limit": "$40,000",
+    "age": "5 yrs 10 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "8809",
+    "bank": "Chase",
+    "price": "$1,296.00",
+    "limit": "$29,000",
+    "age": "10 yrs 4 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "24674",
+    "bank": "Barclays",
+    "price": "$1,296.00",
+    "limit": "$40,000",
+    "age": "8 yrs 8 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "24455",
+    "bank": "Chase",
+    "price": "$1,368.00",
+    "limit": "$29,600",
+    "age": "13 yrs 9 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "23463",
+    "bank": "Chase",
+    "price": "$1,368.00",
+    "limit": "$25,000",
+    "age": "13 yrs 7 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "29372",
+    "bank": "Discover/CP1",
+    "price": "$1,656.00",
+    "limit": "$20,100",
+    "age": "24 yrs 2 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "15368",
+    "bank": "Chase",
+    "price": "$1,800.00",
+    "limit": "$34,900",
+    "age": "19 yrs 10 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "14948",
+    "bank": "Chase",
+    "price": "$1,872.00",
+    "limit": "$30,155",
+    "age": "20 yrs 10 mo",
+    "purchase_deadline": "Oct 16th",
+    "reporting_period": "Oct 27th - Nov 3rd"
+  },
+  {
+    "card_id": "40075",
+    "bank": "CP1",
+    "price": "$576.00",
+    "limit": "$6,000",
+    "age": "6 yrs 10 mo",
+    "purchase_deadline": "Oct 17th",
+    "reporting_period": "Oct 28th - Nov 4th"
+  },
+  {
+    "card_id": "26889",
+    "bank": "Chase",
+    "price": "$612.00",
+    "limit": "$4,800",
+    "age": "8 yrs 9 mo",
+    "purchase_deadline": "Oct 17th",
+    "reporting_period": "Oct 28th - Nov 4th"
+  },
+  {
+    "card_id": "32788",
+    "bank": "Bank of America",
+    "price": "$612.00",
+    "limit": "$7,000",
+    "age": "7 yrs 6 mo",
+    "purchase_deadline": "Oct 17th",
+    "reporting_period": "Oct 28th - Nov 4th"
+  },
+  {
+    "card_id": "40044",
+    "bank": "Chase",
+    "price": "$612.00",
+    "limit": "$15,500",
+    "age": "4 yrs 3 mo",
+    "purchase_deadline": "Oct 17th",
+    "reporting_period": "Oct 28th - Nov 4th"
+  },
+  {
+    "card_id": "2905",
+    "bank": "Chase",
+    "price": "$612.00",
+    "limit": "$20,000",
+    "age": "2 yrs 8 mo",
+    "purchase_deadline": "Oct 17th",
+    "reporting_period": "Oct 28th - Nov 4th"
+  },
+  {
+    "card_id": "10624",
+    "bank": "Chase",
+    "price": "$630.00",
+    "limit": "$20,000",
+    "age": "4 yrs 5 mo",
+    "purchase_deadline": "Oct 17th",
+    "reporting_period": "Oct 28th - Nov 4th"
+  },
+  {
+    "card_id": "3236",
+    "bank": "Elan",
+    "price": "$900.00",
+    "limit": "$21,000",
+    "age": "7 yrs 0 mo",
+    "purchase_deadline": "Oct 17th",
+    "reporting_period": "Oct 28th - Nov 4th"
+  },
+  {
+    "card_id": "22503",
+    "bank": "Chase",
+    "price": "$936.00",
+    "limit": "$7,600",
+    "age": "20 yrs 6 mo",
+    "purchase_deadline": "Oct 17th",
+    "reporting_period": "Oct 28th - Nov 4th"
+  },
+  {
+    "card_id": "9895",
+    "bank": "Elan",
+    "price": "$936.00",
+    "limit": "$14,000",
+    "age": "13 yrs 3 mo",
+    "purchase_deadline": "Oct 17th",
+    "reporting_period": "Oct 28th - Nov 4th"
+  },
+  {
+    "card_id": "3072",
+    "bank": "Discover/CP1",
+    "price": "$936.00",
+    "limit": "$11,200",
+    "age": "12 yrs 6 mo",
+    "purchase_deadline": "Oct 17th",
+    "reporting_period": "Oct 28th - Nov 4th"
+  },
+  {
+    "card_id": "27916",
+    "bank": "Elan",
+    "price": "$936.00",
+    "limit": "$19,500",
+    "age": "8 yrs 10 mo",
+    "purchase_deadline": "Oct 17th",
+    "reporting_period": "Oct 28th - Nov 4th"
+  },
+  {
+    "card_id": "6565",
+    "bank": "Bank of America",
+    "price": "$1,008.00",
+    "limit": "$26,000",
+    "age": "7 yrs 1 mo",
+    "purchase_deadline": "Oct 17th",
+    "reporting_period": "Oct 28th - Nov 4th"
+  },
+  {
+    "card_id": "27126",
+    "bank": "Chase",
+    "price": "$1,152.00",
+    "limit": "$13,100",
+    "age": "21 yrs 0 mo",
+    "purchase_deadline": "Oct 17th",
+    "reporting_period": "Oct 28th - Nov 4th"
+  },
+  {
+    "card_id": "31659",
+    "bank": "Chase",
+    "price": "$1,152.00",
+    "limit": "$17,000",
+    "age": "19 yrs 5 mo",
+    "purchase_deadline": "Oct 17th",
+    "reporting_period": "Oct 28th - Nov 4th"
+  }
+]
